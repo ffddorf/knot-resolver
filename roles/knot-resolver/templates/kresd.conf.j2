@@ -1,0 +1,23 @@
+# {{ ansible_managed }}
+
+net.listen('127.0.0.1', 53, { kind = 'dns' })
+net.listen('127.0.0.1', 853, { kind = 'tls' })
+net.listen('::1', 53, { kind = 'dns', freebind = true })
+net.listen('::1', 853, { kind = 'tls', freebind = true })
+
+{%- if primary_ip4 is defined %}
+net.listen('{{ primary_ip4 }}', 53, { kind = 'dns' })
+net.listen('{{ primary_ip4}}', 853, { kind = 'tls' })
+{% endif %}
+{%- if primary_ip6 is defined %}
+net.listen('{{ primary_ip6 }}', 53, { kind = 'dns' })
+net.listen('{{ primary_ip6 }}', 853, { kind = 'tls' })
+{% endif %}
+
+modules = {
+        'hints > iterate',  -- Load /etc/hosts and allow custom root hints
+        'stats',            -- Track internal statistics
+        'predict',          -- Prefetch expiring/frequent records
+}
+
+cache.size = 1000 * MB

@@ -1,0 +1,7 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include knot-resolver"
+      include_role:
+        name: "knot-resolver"

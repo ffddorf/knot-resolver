@@ -1,0 +1,30 @@
+---
+- name: add Knot Resolver package key
+  apt_key:
+    state: present
+    keyserver: keyserver.ubuntu.com
+    id: 45737F9C8BC3F3ED2791818274062DB36A1F4009
+
+- name: add Knot Resolver package repository
+  apt_repository:
+    state: present
+    repo: deb http://download.opensuse.org/repositories/home:/CZ-NIC:/knot-resolver-latest/Debian_10/ /
+
+- name: install Knot Resolver packages
+  apt:
+    state: present
+    name:
+      - knot-resolver
+      - knot-dnsutils
+
+- name: configure Knot Resolver service
+  template:
+    src: kresd.conf.j2
+    dest: /etc/knot-resolver/kresd.conf
+  notify: restart kresd
+
+- name: start and enable Knot Resolver service
+  systemd:
+    name: kresd@1.service
+    state: started
+    enabled: yes

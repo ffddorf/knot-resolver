@@ -1,0 +1,36 @@
+---
+# This is an example playbook to execute Ansible tests.
+
+- name: Verify
+  hosts: all
+  tasks:
+
+  - name: Test resolver over IPv4 (UDP)
+    when: primary_ip4 is defined
+    changed_when: False
+    command: "kdig +notcp +short @{{ primary_ip4 }} google.com AAAA"
+
+  - name: Test resolver over IPv6 (UDP)
+    when: primary_ip6 is defined
+    changed_when: False
+    command: "kdig +notcp +short @{{ primary_ip6 }} google.com AAAA"
+
+  - name: Test resolver over IPv4 (TCP)
+    when: primary_ip4 is defined
+    changed_when: False
+    command: "kdig +tcp +short @{{ primary_ip4 }} google.com AAAA"
+
+  - name: Test resolver over IPv6 (TCP)
+    when: primary_ip6 is defined
+    changed_when: False
+    command: "kdig +tcp +short @{{ primary_ip6 }} google.com AAAA"
+
+  - name: Test resolver over IPv4 (TLS)
+    when: primary_ip4 is defined
+    changed_when: False
+    command: "kdig +tls +short @{{ primary_ip4 }} google.com AAAA"
+
+  - name: Test resolver over IPv6 (TLS)
+    when: primary_ip6 is defined
+    changed_when: False
+    command: "kdig +tls +short @{{ primary_ip6 }} google.com AAAA"

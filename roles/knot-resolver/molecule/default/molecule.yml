@@ -1,0 +1,32 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+platforms:
+  - name: resolver
+    image: debian-systemd:10
+    pre_build_image: true
+    command: /sbin/init
+    tmpfs:
+      - /run
+      - /run/lock
+      - /tmp
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    capabilities:
+      - NET_ADMIN
+provisioner:
+  name: ansible
+  lint:
+    name: ansible-lint
+  inventory:
+    host_vars:
+      resolver:
+        ansible_python_interpreter: /usr/bin/python3
+        # Some imaginary address - only for testing
+        primary_ip4: 172.23.23.1
+        # TODO: figure out how to use IPv6 in Docker
+        # primary_ip6: fd00::1
+verifier:
+  name: ansible
