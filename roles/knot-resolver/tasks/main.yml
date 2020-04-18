@@ -24,7 +24,8 @@
   notify: restart kresd
 
 - name: start and enable Knot Resolver service
+  with_sequence: "count={{ kresd_instances }}"
   systemd:
-    name: kresd@1.service
+    name: "kresd@{{ item }}.service"
     state: started
     enabled: yes

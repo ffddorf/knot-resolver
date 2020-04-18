@@ -11,7 +11,7 @@ none
 Role Variables
 --------------
 
-none
+`kresd_instances` the number of service instances to start (default: 2)
 
 Dependencies
 ------------
@@ -25,7 +25,7 @@ Including an example of how to use your role (for instance, with variables passe
 
     - hosts: dns-resolvers
       roles:
-         - { role: knot-resolver }
+         - { role: knot-resolver, kresd_instances: 3 }
 
 License
 -------

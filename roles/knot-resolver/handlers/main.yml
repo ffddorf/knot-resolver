@@ -1,5 +1,6 @@
 ---
 - name: restart kresd
+  with_sequence: "count={{ kresd_instances }}"
   systemd:
-    name: kresd@1.service
+    name: "kresd@{{ item }}.service"
     state: restarted
