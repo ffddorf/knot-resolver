@@ -42,13 +42,21 @@ molecule converge
 
 `kresd_instances` the number of service instances to start (default: 2)
 `kresd_cachesize` size of the persisent resolver cache in MB (default: 100)
-
+`kresd_prefix_ip4` restrict access to this IPv4 prefix (default: none)
+`kresd_prefix_ip6` restrict access to this IPv6 prefix (default: none)
 
 ## Example Playbook
 
-    - hosts: dns-resolvers
-      roles:
-         - { role: knot-resolver, kresd_instances: 3, kresd_cachesize: 200 }
+```
+- hosts: dns-resolvers
+  roles:
+    - role: knot-resolver
+      vars:
+        kresd_instances: 3
+        kresd_cachesize: 200
+        kresd_prefix_ip4: 192.168.0.0/16
+        kresd_prefix_ip4: fd00:1::/64
+```
 
 ## License
 

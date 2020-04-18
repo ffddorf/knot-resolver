@@ -26,6 +26,7 @@ provisioner:
         ansible_python_interpreter: /usr/bin/python3
         # Some imaginary address - only for testing
         service_ip4: 172.23.23.1
+        kresd_prefix_ip4: 127.0.0.0/24
         # TODO: figure out how to use IPv6 in Docker
         # service_ip6: fd00::1
 verifier:

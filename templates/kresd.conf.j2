@@ -21,3 +21,17 @@ modules = {
 }
 
 cache.size = {{ kresd_cachesize }} * MB
+
+{% if kresd_prefix_ip4 is defined %}
+modules.load('view')
+view:addr('127.0.0.0/8', policy.all(policy.PASS))
+view:addr('{{ kresd_prefix_ip4 }}', policy.all(policy.PASS))
+view:addr('0.0.0.0/0', policy.all(policy.DROP))
+{% endif %}
+
+{% if kresd_prefix_ip6 is defined %}
+modules.load('view')
+view:addr('::1/128', policy.all(policy.PASS))
+view:addr('{{ kresd_prefix_ip6 }}', policy.all(policy.PASS))
+view:addr('::/0', policy.all(policy.DROP))
+{% endif %}
