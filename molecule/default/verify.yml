@@ -1,0 +1,35 @@
+---
+
+- name: Verify
+  hosts: all
+  tasks:
+
+  - name: Test resolver over IPv4 (UDP)
+    when: service_ip4 is defined
+    changed_when: False
+    command: "kdig +notcp +short @{{ service_ip4 }} google.com AAAA"
+
+  - name: Test resolver over IPv6 (UDP)
+    when: service_ip6 is defined
+    changed_when: False
+    command: "kdig +notcp +short @{{ service_ip6 }} google.com AAAA"
+
+  - name: Test resolver over IPv4 (TCP)
+    when: service_ip4 is defined
+    changed_when: False
+    command: "kdig +tcp +short @{{ service_ip4 }} google.com AAAA"
+
+  - name: Test resolver over IPv6 (TCP)
+    when: service_ip6 is defined
+    changed_when: False
+    command: "kdig +tcp +short @{{ service_ip6 }} google.com AAAA"
+
+  - name: Test resolver over IPv4 (TLS)
+    when: service_ip4 is defined
+    changed_when: False
+    command: "kdig +tls +short @{{ service_ip4 }} google.com AAAA"
+
+  - name: Test resolver over IPv6 (TLS)
+    when: service_ip6 is defined
+    changed_when: False
+    command: "kdig +tls +short @{{ service_ip6 }} google.com AAAA"

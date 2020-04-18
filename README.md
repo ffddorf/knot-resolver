@@ -37,3 +37,22 @@ Change the Ansible files freely and have Molecule apply them again with the foll
 ```
 molecule converge
 ```
+
+## Role Variables
+
+`kresd_instances` the number of service instances to start (default: 2)
+
+
+## Example Playbook
+
+    - hosts: dns-resolvers
+      roles:
+         - { role: knot-resolver, kresd_instances: 3 }
+
+## License
+
+MIT License
+
+## Author Information
+
+Freifunk Düsseldorf e.V. <kontakt@freifunk-duesseldorf.de>

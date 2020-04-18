@@ -5,8 +5,8 @@
     - name: create dummy interface
       command: "ip link add dummy0 type dummy"
     - name: add primary IPv4 address to loopback interface
-      when: primary_ip4 is defined
-      command: "ip addr add {{ primary_ip4 }}/32 dev dummy0"
+      when: service_ip4 is defined
+      command: "ip addr add {{ service_ip4 }}/32 dev dummy0"
     - name: add primary IPv4 address to loopback interface
-      when: primary_ip6 is defined
-      command: "ip addr add {{ primary_ip6 }}/128 dev dummy0"
+      when: service_ip6 is defined
+      command: "ip addr add {{ service_ip6 }}/128 dev dummy0"

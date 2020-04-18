@@ -25,8 +25,8 @@ provisioner:
       resolver:
         ansible_python_interpreter: /usr/bin/python3
         # Some imaginary address - only for testing
-        primary_ip4: 172.23.23.1
+        service_ip4: 172.23.23.1
         # TODO: figure out how to use IPv6 in Docker
-        # primary_ip6: fd00::1
+        # service_ip6: fd00::1
 verifier:
   name: ansible
