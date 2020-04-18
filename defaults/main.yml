@@ -1,2 +1,3 @@
 ---
 kresd_instances: 2
+kresd_cachesize: 100

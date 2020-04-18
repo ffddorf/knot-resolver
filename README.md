@@ -41,13 +41,14 @@ molecule converge
 ## Role Variables
 
 `kresd_instances` the number of service instances to start (default: 2)
+`kresd_cachesize` size of the persisent resolver cache in MB (default: 100)
 
 
 ## Example Playbook
 
     - hosts: dns-resolvers
       roles:
-         - { role: knot-resolver, kresd_instances: 3 }
+         - { role: knot-resolver, kresd_instances: 3, kresd_cachesize: 200 }
 
 ## License
 
