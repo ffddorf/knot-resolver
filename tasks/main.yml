@@ -3,12 +3,12 @@
   apt_key:
     state: present
     keyserver: keyserver.ubuntu.com
-    id: 45737F9C8BC3F3ED2791818274062DB36A1F4009
+    id: 8C0A90B7DE9CAC3B4A7BD5798A0EFB02C84B1E9B
 
 - name: add Knot Resolver package repository
   apt_repository:
     state: present
-    repo: deb http://download.opensuse.org/repositories/home:/CZ-NIC:/knot-resolver-latest/Debian_10/ /
+    repo: deb https://deb.knot-dns.cz/knot-latest/ buster main
 
 - name: install Knot Resolver packages
   apt:
