@@ -1,4 +1,4 @@
-ansible==2.9.20
+ansible==7.0.0
 ansible-lint==4.3.0a0
 appdirs==1.4.3
 arrow==0.15.5
